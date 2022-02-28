@@ -1156,13 +1156,15 @@ module.exports = function settle(resolve, reject, response) {
   if (!response.status || !validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
-    reject(createError(
-      'Request failed with status code ' + response.status,
-      response.config,
-      null,
-      response.request,
-      response
-    ));
+    reject(
+      createError(
+        "Request failed with status code " + response.status,
+        response.config,
+        response.status,
+        response.request,
+        response
+      )
+    );
   }
 };
 
